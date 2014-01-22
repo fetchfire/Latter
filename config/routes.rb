@@ -1,5 +1,6 @@
 Latter::Application.routes.draw do
   devise_for :players
+  
 
   resources :games, :except => [:edit, :update] do
     post :complete, :on => :member
@@ -11,6 +12,8 @@ Latter::Application.routes.draw do
   resources :players do
     resource :authentication_token, :only => [:show, :destroy]
   end
+
+  resources :badges, :only => :index
 
   get "/player" => "players#current", :constraints => {:format => :json}
 
